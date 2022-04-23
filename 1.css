@@ -1,0 +1,165 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-height: 100vh;/* body元素最小高度为父级元素的100% */
+    /* 弹性布局 -- 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #bbe9de;
+}
+.container{
+    background-color: #222;
+    width: 350px;
+    height: 550px;
+    border-radius: 15px;
+    overflow: hidden;/* 溢出隐藏 */
+    position: relative;/* 相对定位 */
+}
+.container::after{
+    content: "";
+    position: absolute;/* absolute以第一个不为默认定位的层级为父级，故after的父级为container */
+    inset: 0;/* inset为0，相当于top，bottom，left，right都为0，对于absolute来说*/
+    background: url("img/bg.jpg") no-repeat;
+    background-size: 500px;
+    background-position: left bottom;
+    opacity: 0.8;
+}
+/* 注册区域 */
+.register-box{
+    width: 70%;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: 0.3s ease;/* 动画效果：转换过程持续时间0.3s，转换方式：ease表示逐渐减慢 */
+}
+.register-title,
+.login-title{
+    color: #fff;
+    font-size: 27px;
+    text-align: center;
+}
+.register-title span,
+.login-title span{
+    color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+.register-box .input-box,
+.login-box .input-box{
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 50px;
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s ease;
+}
+.register-box input,
+.login-box input{
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    padding: 8px 0;
+    text-indent: 15px;
+    outline: none;
+}
+.register-box input:last-chil,
+.login-box input:last-child{
+    border-bottom: none;
+}
+.register-box input::placeholde,
+.login-box input::placeholder
+{
+    color: rgba(0, 0, 0, 0.4);
+}
+.register-box button,
+.login-box button{
+    width: 100%;
+    padding: 15px 45px;
+    margin: 15px 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    border-radius: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;/* 鼠标放上去，会从鼠标变成点击鼠标 */
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s ease;
+}
+.register-box button:hover,
+.login-box button:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/* 登录区域 */
+.login-box{
+    position: absolute;
+    inset: 0;
+    top: 20%;
+    z-index: 2;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+.login-box::before{
+    content: "";
+    background-color: #fff;
+    width: 200%;
+    height: 250px;
+    border-radius: 50%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+.login-box .center{
+    width: 70%;
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+}
+.login-title{
+    color: black;
+}
+.login-box .input-box{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.login-box button{
+    background-color: #75a297;
+}
+.login-box.slide-up{
+    top: 90%;
+}
+.login-box.slide-up .center{
+    top: 10%;
+    transform: translate(-50%,0);
+}
+.login-box.slide-up .login-title,
+.register-box.slide-up .register-title{
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-box.slide-up .login-title span,
+.register-box.slide-up .register-title span{
+    margin-right: 5px;
+    display: inline-block;
+}
+.login-box.slide-up .input-box,
+.login-box.slide-up .button,
+.register-box.slide-up .input-box,
+.register-box.slide-up .button{
+    opacity: 0;
+    visibility: hidden;
+}
+.register-box.slide-up{
+    top: 6%;
+    transform: translate(-50%,0);
+}
